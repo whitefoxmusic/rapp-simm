@@ -211,3 +211,58 @@ function restartGame() {
 }
 
 window.onload = showWeek;
+// Save the current game state to localStorage
+function saveGame() {
+  localStorage.setItem('rapperGameSave', JSON.stringify(gameState));
+  alert('Game saved!');
+}
+
+// Load the game state from localStorage
+function loadGame() {
+  const data = localStorage.getItem('rapperGameSave');
+  if (data) {
+    gameState = JSON.parse(data);
+    showWeek();
+    alert('Game loaded!');
+  } else {
+    alert('No save found!');
+  }
+}
+
+// Attach to buttons after DOM loads
+window.onload = function() {
+  showWeek();
+  document.getElementById('saveBtn').onclick = saveGame;
+  document.getElementById('loadBtn').onclick = loadGame;
+};
+let socialPosts = [];
+
+function switchTab(tab) {
+  document.getElementById('gameTab').style.display = tab === 'game' ? '' : 'none';
+  document.getElementById('socialTab').style.display = tab === 'social' ? '' : 'none';
+  document.getElementById('gameTabBtn').classList.toggle('active', tab === 'game');
+  document.getElementById('socialTabBtn').classList.toggle('active', tab === 'social');
+  if (tab === 'social') renderSocialFeed();
+}
+
+document.getElementById('gameTabBtn').onclick = () => switchTab('game');
+document.getElementById('socialTabBtn').onclick = () => switchTab('social');
+
+function renderSocialFeed() {
+  const feed = document.getElementById('socialFeed');
+  if (socialPosts.length === 0) {
+    feed.innerHTML = "<i>No posts yet. Make your first post!</i>";
+  } else {
+    feed.innerHTML = socialPosts.map(p => `<div style="margin-bottom:10px;"><b>${p.week}:</b> ${p.text}</div>`).join('');
+  }
+}
+
+document.getElementById('postBtn').onclick = () => {
+  const txt = prompt("What's your post?");
+  if (txt && txt.trim() !== "") {
+    socialPosts.unshift({ week: "Week " + gameState.week, text: txt.trim() });
+    gameState.followers += Math.floor(Math.random() * 100) + 50; // Gain followers
+    renderSocialFeed();
+    alert("Your post gained you new followers!");
+  }
+};
