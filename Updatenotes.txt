@@ -1,0 +1,4 @@
+Added Social Media
+Fixed some bugs
+    - Scrolling issue
+Added Save/ Load
