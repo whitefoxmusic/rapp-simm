@@ -67,25 +67,3 @@ button {
 button:hover {
   background: linear-gradient(90deg,#e67e22,#f39c12);
 }
-.rapper-game {
-  max-height: 80vh;  /* Limit height to 80% of viewport */
-  overflow-y: auto;  /* Enable vertical scrolling when needed */
-}
-.tabs {
-  text-align: center;
-  margin-bottom: 16px;
-}
-.tab-btn {
-  margin: 0 6px 12px 0;
-  padding: 7px 20px;
-  border-radius: 7px;
-  border: none;
-  background: #444;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-}
-.tab-btn.active {
-  background: #f39c12;
-  color: #222;
-}
