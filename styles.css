@@ -17,6 +17,8 @@ body {
   max-width: 380px;
   min-width: 320px;
   text-align: left;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 h1 {
@@ -66,10 +68,6 @@ button {
 
 button:hover {
   background: linear-gradient(90deg,#e67e22,#f39c12);
-}
-.rapper-game {
-  max-height: 80vh;  /* Limit height to 80% of viewport */
-  overflow-y: auto;  /* Enable vertical scrolling when needed */
 }
 .tabs {
   text-align: center;
